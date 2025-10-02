@@ -1,0 +1,286 @@
+/* -------------------- Colores -------------------- */
+
+:root {
+    --Negro: #000000;
+}
+
+/* -------------------- Aviso cookies -------------------- */
+
+.TarjetaCookie{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+	position: fixed;
+	bottom: 20px;
+    left: 20px;
+    right: 20px;
+	z-index: 150;
+
+	height: fit-content;
+
+	padding: 1.5rem;
+	background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.TarjetaCookieTitulo{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: left;
+    gap: 20px;
+}
+
+.TarjetaCookieTitulo img{
+	width: 40px;
+	height: 40px;
+	justify-self: center;
+	align-self: center;
+}
+
+.TarjetaCookieTitulo h2{
+	font-size: large;
+	font-weight: 600;
+}
+
+.TarjetaCookieTexto p{
+	padding: 1rem 0;
+	font-size: medium;
+	text-align: justify;
+}
+
+.TarjetaCookieTexto p a:hover{
+	/* color:; */ /*TODO ---------- Modificar ---------- */
+}
+
+.TarjetaCookie button{
+    display: flex;
+    align-content: center;
+	font-weight: 600;
+}
+
+
+/* -------------------- Barra de navegacion -------------------- */ /*TODO ---------- Modificar ---------- */
+
+.NavBarPc {
+    display: none;
+}
+
+.NavBarMovil {
+    position: absolute;
+    top: 0;
+
+    display: grid;
+	grid-template-columns: 7fr 3fr;
+	align-items: center;
+	
+	z-index: 100;
+
+	width: 100%;
+	padding: 20px;
+}
+
+.NavBarMovilLogo img {
+	width: calc(100px + 1vw);
+}
+
+.NavBarMovil button {
+	display: grid;
+    justify-content: right;
+}
+
+.NavBarMovil button img {
+	width: 30px;
+}
+
+.NavBarOverlay {
+    position: absolute;
+    right: 0%;
+    z-index: 90;
+    inset: 0;
+
+    width: 100%;
+    height: fit-content;
+
+    padding: 120px calc(1rem + 10vw) 2rem;
+    padding-top: 120px;
+    background-color:  #fff;
+}
+
+.NavBarOverlay h2 {
+    font-size: larger;
+    font-weight: 500;
+}
+
+.NavBarOverlay h3 {
+    padding-left: 1rem;
+    font-size: large;
+    font-weight: 400;
+}
+
+.NavBarMovilContacto {
+    width: fit-content;
+    margin: .5rem 0;
+    padding: .3rem .5rem;
+    border-radius: 10px;
+}
+
+
+.NavBarMovilIdiomas {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+    padding-top: 1rem;
+}
+
+.NavBarMovilIdiomas img {
+    width: 10px;
+    padding-top: 1rem;
+    object-fit: contain;
+}
+/* -------------------- NavBarPc -------------------- */
+
+@media only screen and (min-width: 800px) {
+    .NavBarMovil, .NavBarOverlay {
+        display: none;
+    }
+
+    .NavBarPc {
+        position: absolute;
+        top: 0;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+        z-index: 100;
+
+        width: 100%;
+        padding: 20px 30px;
+    }
+
+    .NavBarPcLogo {
+        width: calc(120px + 1vw);
+    }
+
+    .NavBarPcEnlaces {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        gap: clamp(4px, calc(4px + 1vw), 20px);
+
+        padding:  0 .5rem;
+    }
+
+    .NavBarPcEnlaces h2 {
+        font-size: larger;
+        font-weight: 500;
+    }
+
+    .NavBarPcEnlaces h2:hover {
+        font-weight: 600;
+    }
+
+    .NavBarPcEnlaces button {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .NavBarPcEnlaces button img {
+        width: 13px;
+        margin-left: .4rem;
+        padding-top: 1rem;
+        object-fit: contain;
+    }
+
+    .NavBarPcOverlay {
+        position: absolute;
+        z-index: 90;
+
+        margin-top: 2.5rem;
+
+        width: 280px;
+        height: fit-content;
+
+        padding: 1rem 1.5rem 1rem;
+
+        background-color:  #fff;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    }
+
+    .NavBarPcOverlay h3 {
+        font-weight: 400;
+    }
+
+    .NavBarPcOverlay h3:hover {
+        font-weight: 500;
+    }
+
+    .NavBarPcIdiomas {
+        margin-left: auto;
+    }
+
+    .NavBarPcOverlayIdiomas {
+        width: 120px;
+    }
+
+    .BtnContacto {
+        padding: .2rem 1.5rem;
+
+        border-radius: 10px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .NavBarPc {
+        gap: calc(10px + 2vw);
+    }
+
+    .NavBarPcEnlaces h2 {
+        font-size: x-large;
+    }
+
+    .NavBarPcOverlay {
+        margin-top: 3rem;
+    }
+}
+
+/* -------------------- Contenido -------------------- */
+
+.Contenido {
+	width: 100%;
+	max-width: 1400px;
+
+	margin: auto;
+	padding: 2rem clamp(1rem, calc(2rem + 1vw), 3rem);
+
+	/* background-color: brown; */
+}
+
+/* -------------------- Footer -------------------- */
+
+
+.FooterMetahorus {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    padding-top: 1rem;
+}
+
+.FooterMetahorus h5 {
+    font-size: x-small;
+    font-weight: 400;
+}
+
+.FooterMetahorus h5 a {
+    color: #0fa1bd;
+    font-size: x-small;
+    font-weight: 600;
+}
+
+.FooterMetahorus h5 a:hover {
+    color: #0a6b7e !important;
+}

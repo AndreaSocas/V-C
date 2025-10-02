@@ -1,0 +1,170 @@
+/* -------------------- Importar CSS propio -------------------- */
+
+/* app.css -> Fuentes, colores, tipografía, condiciones básicas del documento */
+@import 'layout.css'; /* CSS navbar y footer */
+
+
+/* -------------------- Flaticon - Uicons -------------------- */
+
+@import "./../../node_modules/@flaticon/flaticon-uicons/css/all/all.css";
+@import "./../../node_modules/@flaticon/flaticon-uicons/css/brands/all.css";
+
+/* -------------------- Tailwind -------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+/* -------------------- Fuentes -------------------- */
+/*TODO ---------- Ejemplo ---------- */
+
+/* tailwind.config.js -> añadir fuentes */
+
+/*  -- The Suavity -- 
+@font-face { 
+    font-family: "thesuavity";
+    src: url("./../../public/fonts/TheSuavity.ttf");
+} */
+
+/* -------------------- Colores -------------------- */
+
+:root {
+    --Negro: #000000;
+}
+
+/* -------------------- Común -------------------- */
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+}
+
+*:focus {
+    outline:none
+}
+
+/*TODO ---------- Modificar ---------- */
+/* a, a:hover, a:focus, a:active {
+    font-family: "";
+    font-weight: 600;
+	text-decoration: none;
+	color: inherit; 
+} */
+
+a {
+	transition: 0.3s all ease;
+}
+
+/*TODO ---------- Modificar ---------- */
+
+/* a:hover, a:focus, a:active {
+	color: ;
+} */
+
+/* body {
+    background-color: ;
+} */
+
+/* input[type="checkbox"]:checked {
+    background-color: var(--) !important;
+} */
+
+/* -------------------- Tipografía -------------------- */
+
+/*TODO ---------- Modificar ---------- */
+
+h1 {
+    /* font-family: ""; */ 
+    color: var(--Negro);
+}
+
+h2, h3, h4, h5, h6 {
+    /* font-family: ""; */ 
+    font-weight: 600;
+}
+
+h2 {
+    font-size: calc(1rem + .5vw);
+}
+
+h3, h4, h5 {
+    font-size: calc(.9rem + .4vw);
+}
+
+p {
+    /* font-family: ""; */ 
+    font-size: calc(.7rem + .4vw);
+}
+
+/* -------------------- Textos legales -------------------- */
+.TextosLegalesContenedor {
+    background-color: #fff;
+}
+
+.TextosLegalesTarjeta {
+    width: 100%;
+    padding: calc(1rem + 3vw);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #fff; /*TODO ---------- Modificar ---------- */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.TextosLegalesTarjeta h1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    padding-bottom: 1rem;
+
+    font-size: x-large;
+}
+
+.TextosLegalesTarjeta h2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    padding-bottom: 2rem;
+
+    font-size: x-large;
+}
+
+.TextosLegalesTarjeta h3 {
+    padding: 1rem 0 .8rem 1rem;
+
+    font-size: larger;
+}
+
+.TextosLegalesTarjeta h4 {
+    padding: 0 0 .8rem 1.5rem;
+
+    font-size: large;
+}
+
+.TextosLegalesTarjeta p {
+    font-size: medium;
+}
+
+.TextosLegalesTarjeta ul {
+    padding-bottom: .5rem;
+}
+
+.TextosLegalesTarjeta ul li {
+    padding: .5rem 0 0 .5rem;
+
+    font-size: medium;
+    list-style: circle;
+    list-style-position: inside;
+}
