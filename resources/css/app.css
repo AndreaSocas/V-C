@@ -1,9 +1,3 @@
-/* -------------------- Importar CSS propio -------------------- */
-
-/* app.css -> Fuentes, colores, tipografía, condiciones básicas del documento */
-@import 'layout.css'; /* CSS navbar y footer */
-
-
 /* -------------------- Flaticon - Uicons -------------------- */
 
 @import "./../../node_modules/@flaticon/flaticon-uicons/css/all/all.css";
@@ -19,20 +13,20 @@
 }
 
 /* -------------------- Fuentes -------------------- */
-/*TODO ---------- Ejemplo ---------- */
-
-/* tailwind.config.js -> añadir fuentes */
-
-/*  -- The Suavity -- 
-@font-face { 
-    font-family: "thesuavity";
-    src: url("./../../public/fonts/TheSuavity.ttf");
-} */
+@font-face {
+    font-family: "fuente1";
+    src: url("./../../public/imagenes/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf");
+}
 
 /* -------------------- Colores -------------------- */
 
 :root {
     --Negro: #000000;
+    --Marron: #693132;
+    --Verde1: #c4c9b5;
+    --Verde2: #768f68;
+    --Rosa: #c1929a;
+    --Burdeos: #71212c;
 }
 
 /* -------------------- Común -------------------- */
@@ -50,7 +44,7 @@ html {
 }
 
 *:focus {
-    outline:none
+    outline: none;
 }
 
 /*TODO ---------- Modificar ---------- */
@@ -62,7 +56,7 @@ html {
 } */
 
 a {
-	transition: 0.3s all ease;
+    transition: 0.3s all ease;
 }
 
 /*TODO ---------- Modificar ---------- */
@@ -81,90 +75,97 @@ a {
 
 /* -------------------- Tipografía -------------------- */
 
-/*TODO ---------- Modificar ---------- */
-
 h1 {
-    /* font-family: ""; */ 
+    font-family: "funete1";
     color: var(--Negro);
 }
 
-h2, h3, h4, h5, h6 {
-    /* font-family: ""; */ 
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "fuente1";
     font-weight: 600;
 }
 
 h2 {
-    font-size: calc(1rem + .5vw);
+    font-size: calc(1rem + 0.5vw);
 }
 
-h3, h4, h5 {
-    font-size: calc(.9rem + .4vw);
+h3,
+h4,
+h5 {
+    font-size: calc(0.9rem + 0.4vw);
 }
 
 p {
-    /* font-family: ""; */ 
-    font-size: calc(.7rem + .4vw);
+    font-family: "fuente1";
+    font-size: calc(0.7rem + 0.4vw);
 }
 
-/* -------------------- Textos legales -------------------- */
-.TextosLegalesContenedor {
-    background-color: #fff;
-}
+/* -------------------- Contenido -------------------- */
+.Contenido {
+    background-image: url(/public/imagenes/VC.04.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 
-.TextosLegalesTarjeta {
     width: 100%;
-    padding: calc(1rem + 3vw);
+    min-height: 100vh;
+    height: fit-content;
 
-    font-family: Arial, Helvetica, sans-serif;
-
-    background-color: #fff; /*TODO ---------- Modificar ---------- */
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding-bottom: 3rem;
 }
 
-.TextosLegalesTarjeta h1 {
-    display: flex;
-    justify-content: center;
+/* -------------------- Home A -------------------- */
+.HomeA {
+    min-height: 70vh;
+    height: fit-content;
+}
+
+.HomeA img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media only screen and (min-width: 600px) {
+    .HomeA {
+        background-image: url(/public/imagenes/VC.02.webp);
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .HomeA img {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .HomeA {
+        height: 90vh;
+    }
+}
+
+/* -------------------- Home B -------------------- */
+.HomeB {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 calc(2rem + 2vw);
+}
+
+.HomeB h2 {
+    padding-bottom: 1.5rem;
     text-align: center;
-
-    padding-bottom: 1rem;
-
     font-size: x-large;
+    color: var(--Marron);
 }
 
-.TextosLegalesTarjeta h2 {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-
-    padding-bottom: 2rem;
-
-    font-size: x-large;
-}
-
-.TextosLegalesTarjeta h3 {
-    padding: 1rem 0 .8rem 1rem;
-
-    font-size: larger;
-}
-
-.TextosLegalesTarjeta h4 {
-    padding: 0 0 .8rem 1.5rem;
-
-    font-size: large;
-}
-
-.TextosLegalesTarjeta p {
-    font-size: medium;
-}
-
-.TextosLegalesTarjeta ul {
-    padding-bottom: .5rem;
-}
-
-.TextosLegalesTarjeta ul li {
-    padding: .5rem 0 0 .5rem;
-
-    font-size: medium;
-    list-style: circle;
-    list-style-position: inside;
+@media only screen and (min-width: 1400px) {
+    .HomeB h2 {
+        font-size: xx-large;
+    }
 }
