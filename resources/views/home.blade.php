@@ -12,16 +12,22 @@
   </div>
 
   <div class="HomeC">
-    <div>
-        <div class="HomeC1">
-            <label for="">Nombre</label>
-            <input type="text">
-        </div>
-
-        <div class="HomeC2">
-            <input type="image" multiple>
+    <div class="HomeC0">
+        <div>
+            <div class="HomeC1">
+                <label for="">Nombre</label>
+                <input type="text">
+            </div>
+    
+            <div class="HomeC2">
+                <input type="image" multiple>
+            </div>
         </div>
     </div>
+  </div>
+
+  <div class="HomeDivisor">
+    <img src="{{ asset('imagenes/VC.03.webp') }}" alt="">
   </div>
 
   <div class="HomeD" x-data="{ showModal: false, imageSrc: '' }">

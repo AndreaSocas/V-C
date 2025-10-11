@@ -171,6 +171,31 @@ p {
 }
 
 /* -------------------- Home C -------------------- */
+.HomeC {
+    width: 100%;
+    padding: 0 calc(2rem + 1vw) calc(1.5rem + 1vw);
+}
+
+.HomeC0 {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: calc(1.5rem + 2vw);
+    background-color: var(--Burdeos);
+    border-radius: 20px;
+}
+
+
+/* -------------------- Home Divisor -------------------- */
+
+.HomeDivisor img {
+    padding: 0 calc(2rem + 2vw);
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    margin: auto;
+    object-fit: contain;
+}
 
 /* -------------------- Home D -------------------- */
 .HomeD {
