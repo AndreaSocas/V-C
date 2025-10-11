@@ -14,7 +14,7 @@
   @livewireStyles
 
   <!-- Título -->
-  <title>V & C</title>
+  <title>Víctor & Cristina</title>
 
   <!-- Metadescripcion -->
   <meta name="description" content=""> <!-- 130-160 caracteres -->

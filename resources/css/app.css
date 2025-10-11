@@ -160,12 +160,49 @@ p {
 .HomeB h2 {
     padding-bottom: 1.5rem;
     text-align: center;
-    font-size: x-large;
+    font-size: larger;
     color: var(--Marron);
 }
 
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1100px) {
     .HomeB h2 {
-        font-size: xx-large;
+        font-size: x-large;
+    }
+}
+
+/* -------------------- Home C -------------------- */
+
+/* -------------------- Home D -------------------- */
+.HomeD {
+    padding: 1.5rem calc(1rem + 5vw);
+
+    column-count: 2;
+    column-gap: 15px;
+}
+
+.HomeD img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+@media only screen and (min-width: 600px) {
+    .HomeD {
+        column-count: 3;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .HomeD {
+        column-count: 4;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .HomeD {
+        column-count: 5;
     }
 }
