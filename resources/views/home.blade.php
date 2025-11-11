@@ -5,7 +5,7 @@
     <img src="{{ asset('/imagenes/VC.01.webp') }}" alt="">
   </div>
 
-  {{-- <div class="HomeB">
+  <div class="HomeB">
     <h2>Nuestro mejor recuerdo serán las miradas, las sonrisas y los instantes compartidos.</h2>
     <h2>Esta página es nuestro álbum, creado entre todos, para que cada foto que guardes sea parte de la historia de
       nuestro gran día.</h2>
@@ -13,16 +13,33 @@
 
   <div class="HomeC">
     <div class="HomeC0">
-        <div>
-            <div class="HomeC1">
-                <label for="">Nombre</label>
-                <input type="text">
-            </div>
-    
-            <div class="HomeC2">
-                <input type="image" multiple>
-            </div>
+      <div class="HomeC9">
+        <div class="HomeC1">
+          <label for="">Nombre</label>
+          <input type="text">
         </div>
+
+        <div class="HomeC1">
+          <label for="">Mensaje (solo lo verán los novios)</label>
+          <textarea name="" id="" cols="30" rows="5"></textarea>
+        </div>
+
+        <div class="HomeC2">
+          <label for="fotos" class="btn-fotos">Seleccionar fotos</label>
+          <input type="file" id="fotos" class="input-fotos" multiple accept="image/*">
+        </div>
+      </div>
+
+      <div class="HomeC3">
+        <div class="HomeC4">
+          <img src="{{ asset('imagenes/VC.03.webp') }}" alt="">
+          <button>X Borrar imagen</button>
+        </div>
+      </div>
+
+      <div class="HomeC2">
+        <button type="submit" class="btn-enviar">Enviar</button>
+      </div>
     </div>
   </div>
 
@@ -48,5 +65,5 @@
         </div>
       </div>
     </template>
-  </div> --}}
+  </div>
 @endsection

@@ -76,7 +76,7 @@ a {
 /* -------------------- Tipografía -------------------- */
 
 h1 {
-    font-family: "funete1";
+    font-family: "fuente1";
     color: var(--Negro);
 }
 
@@ -121,8 +121,9 @@ p {
 
 /* -------------------- Home A -------------------- */
 .HomeA {
-    min-height: 70vh;
+    min-height: 60vh;
     height: fit-content;
+    padding-bottom: 2rem;
 }
 
 .HomeA img {
@@ -184,6 +185,104 @@ p {
     background-color: var(--Burdeos);
     border-radius: 20px;
 }
+
+.HomeC9 {
+    display: grid;
+    gap: 15px;
+}
+
+.HomeC1 {
+    display: grid;
+    gap: 10px;
+}
+
+.HomeC1 label {
+    font-family: "fuente1";
+    font-size: large;
+    color: #fff;
+}
+
+.HomeC1 input,
+.HomeC1 textarea {
+    padding: 0.3rem 0.5rem;
+    border-radius: 10px;
+}
+
+.HomeC2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.input-fotos {
+    display: none;
+}
+
+.btn-fotos {
+    background-color: #fff;
+    width: fit-content;
+    margin: auto;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "fuente1";
+    color: var(--Burdeos);
+    font-weight: 700;
+    border: 2px solid var(--Burdeos);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.HomeC3 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    padding-top: 2rem;
+}
+
+.HomeC4 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    padding: .3rem 0;
+}
+
+.HomeC4 img {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    object-fit: cover;
+}
+
+.HomeC4 button {
+    width: 100%;
+    text-align: center;
+    font-family: "fuente1";
+    color: #fff;
+}
+
+.btn-enviar {
+    background-color: var(--Burdeos);
+    border: 2px solid #fff;
+    color: #fff;
+    width: fit-content;
+    margin: 20px auto 0;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "fuente1";
+    font-weight: 700;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-enviar:hover {
+    background-color: #fff;
+    color: var(--Burdeos);
+  }
 
 
 /* -------------------- Home Divisor -------------------- */
