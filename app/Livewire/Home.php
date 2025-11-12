@@ -42,6 +42,10 @@ class Home extends Component
 			]);
 		}
 
+		$this->nombre = '';
+		$this->mensaje = '';
+		$this->imagenes = [];
+
 		$this->imagenesGaleria = Imagenes::all();
 	}
 
