@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Imagenes;
 use App\Models\Post;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -32,9 +33,10 @@ class Home extends Component
 		$hora = now()->format('Hi');
 
 		foreach ($this->imagenes as $i => $imagen) {
+			$nombreLimpio = Str::of($this->nombre)->slug('_');
 			$extension = $imagen->getClientOriginalExtension();
 			$hash = substr(md5(uniqid()), 0, 4); // 4 caracteres para asegurar unicidad
-			$nombreArchivo = "{$this->nombre}_{$hora}_{$i}_{$hash}.{$extension}";
+			$nombreArchivo = "{$nombreLimpio}_{$hora}_{$i}_{$hash}.{$extension}";
 			
 			$post->imagenes()->create([
 				'url' => $imagen->storeAs('posts', $nombreArchivo, 'public'),
