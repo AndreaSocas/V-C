@@ -9,7 +9,6 @@
   <!-- Scripts -->
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-
   <!-- Styles -->
   @livewireStyles
 
@@ -45,10 +44,14 @@
 </head>
 
 <body>
-  
+
   {{-- ------------------ Contenido ------------------ --}}
   <main class="Contenido">
-    @yield('content')
+    @if (isset($slot))
+      {{ $slot }}
+    @else
+      @yield('content')
+    @endif
   </main>
 
   @livewireScripts
