@@ -29,7 +29,7 @@
 
         <div class="HomeC2">
           <label for="fotos" class="btn-fotos">Seleccionar fotos</label>
-          <input type="file" id="fotos" class="input-fotos" capture="environment" multiple required accept="image/*" wire:model='imagenes'>
+          <input type="file" id="fotos" class="input-fotos" capture multiple required accept="image/*" wire:model='imagenes'>
           @error('imagenes')
             <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
           @enderror
