@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Imagenes;
 use App\Models\Post;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -12,8 +13,11 @@ class Home extends Component
 {
 	use WithFileUploads;
 
+	#[Validate('required', message: 'Indica tu nombre.')]
 	public $nombre;
+	#[Validate('required', message: 'Deja un mensaje para los novios.')]
 	public $mensaje;
+	#[Validate('required', message: 'Sube una foto del momento.')]
 	public $imagenes = [];
 	public $imagenesGaleria = [];
 
@@ -24,6 +28,8 @@ class Home extends Component
 
 	public function guardar()
 	{
+		$this->validate();
+
 		$post = new Post();
 
 		$post->nombre = $this->nombre;

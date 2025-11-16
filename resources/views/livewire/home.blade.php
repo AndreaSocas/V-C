@@ -13,17 +13,26 @@
       <div class="HomeC9">
         <div class="HomeC1">
           <label for="">Nombre</label>
-          <input type="text" wire:model='nombre'>
+          <input type="text" wire:model='nombre' required>
+          @error('nombre')
+            <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="HomeC1">
           <label for="">Mensaje (solo lo verán los novios)</label>
           <textarea name="" id="" cols="30" rows="5" wire:model='mensaje'></textarea>
+          @error('mensaje')
+            <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="HomeC2">
           <label for="fotos" class="btn-fotos">Seleccionar fotos</label>
-          <input type="file" id="fotos" class="input-fotos" multiple accept="image/*" wire:model='imagenes'>
+          <input type="file" id="fotos" class="input-fotos" capture="environment" multiple required accept="image/*" wire:model='imagenes'>
+          @error('imagenes')
+            <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
+          @enderror
         </div>
       </div>
 
