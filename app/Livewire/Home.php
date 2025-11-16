@@ -15,7 +15,6 @@ class Home extends Component
 
 	#[Validate('required', message: 'Indica tu nombre.')]
 	public $nombre;
-	#[Validate('required', message: 'Deja un mensaje para los novios.')]
 	public $mensaje;
 	#[Validate('required', message: 'Sube una foto del momento.')]
 	public $imagenes = [];
