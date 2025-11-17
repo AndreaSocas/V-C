@@ -33,6 +33,9 @@
           @error('imagenes')
             <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
           @enderror
+          @error('imagenes.*')
+            <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
+          @enderror
         </div>
       </div>
 

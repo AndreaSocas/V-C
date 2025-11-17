@@ -20,6 +20,14 @@ class Home extends Component
 	public $imagenes = [];
 	public $imagenesGaleria = [];
 
+	protected function rules()
+	{
+		return [
+			'imagenes' => 'required|array|min:1',
+			'imagenes.*' => 'file|mimes:jpeg,jpg,png,webp,heic|max:5120',
+		];
+	}
+
 	public function mount()
 	{
 		$this->imagenesGaleria = Imagenes::all();
@@ -42,7 +50,7 @@ class Home extends Component
 			$extension = $imagen->getClientOriginalExtension();
 			$hash = substr(md5(uniqid()), 0, 4); // 4 caracteres para asegurar unicidad
 			$nombreArchivo = "{$nombreLimpio}_{$hora}_{$i}_{$hash}.{$extension}";
-			
+
 			$post->imagenes()->create([
 				'url' => $imagen->storeAs('posts', $nombreArchivo, 'public'),
 				'nombre' => $nombreArchivo,
