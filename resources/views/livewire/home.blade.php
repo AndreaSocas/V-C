@@ -40,14 +40,11 @@
 
           <!-- Mensaje de archivos rechazados -->
           <template x-if="rejected.length">
-            <div class="mt-2 text-sm text-yellow-400">
-              Archivos rechazados (> <span x-text="maxMb"></span> MB o no imagen):
+            <div class="text-lg font-semibold text-yellow-400">
+              Archivos demasiado grandes:
               <span x-text="rejected.join(', ')"></span>
             </div>
           </template>
-
-          <!-- (Opcional) indicador de procesamiento -->
-          <div x-show="processing" class="mt-2 text-sm text-gray-600">Procesando imágenes…</div>
 
           <script>
             function autoFilesToLivewire({
