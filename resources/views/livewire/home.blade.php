@@ -27,16 +27,10 @@
           @enderror
         </div>
 
-        <div class="HomeC2"x-data="autoFilesToLivewire({ maxMb: 5 })" x-init>
-          {{-- <label for="fotos" class="btn-fotos">Seleccionar fotos</label>
-          <input type="file" id="fotos" class="input-fotos" multiple required accept="image/*" wire:model='imagenes'> --}}
+        <div class="HomeC2" x-data="autoFilesToLivewire({ maxMb: 5 })">
 
-          <!-- Input visible (solo UX) -->
-          <label for="fotos_visible" class="btn-fotos">Seleccionar fotos</label>
-          <input id="fotos_visible" type="file" multiple accept="image/*" class="input-fotos" @change="onFilesSelected($event)">
-
-          <!-- Input hidden que sí tiene wire:model para Livewire -->
-          <input id="fotos_livewire" type="file" multiple style="display:none" wire:model="imagenes">
+          <label for="fotos" class="btn-fotos">Seleccionar fotos</label>
+          <input type="file" id="fotos" class="input-fotos" multiple required accept="image/*" @change="handle($event)">
 
           <!-- Mensaje de archivos rechazados -->
           <template x-if="rejected.length">
@@ -53,96 +47,45 @@
               return {
                 maxMb,
                 maxBytes: maxMb * 1024 * 1024,
-                previews: [], // object URLs de las imágenes válidas
-                files: [], // Files válidos (File objects)
-                rejected: [], // nombres rechazados
-                processing: false,
-                // Handler principal, reemplaza cualquier selección anterior
-                async onFilesSelected(e) {
-                  if (this.processing) return;
-                  this.processing = true;
+                rejected: [],
 
-                  // limpiar estado previo
-                  this._clearAll();
-
+                handle(e) {
                   const input = e.target;
-                  const chosen = Array.from(input.files || []);
+                  const files = Array.from(input.files || []);
+                  const validFiles = [];
 
-                  // filtrar (tipo y tamaño). Si quieres más validaciones añade aquí.
-                  for (const f of chosen) {
-                    if (!f.type || !f.type.startsWith('image/')) {
-                      this.rejected.push(f.name + ' (no imagen)');
-                      continue;
-                    }
-                    if (f.size > this.maxBytes) {
-                      this.rejected.push(f.name + ` (>${this.maxMb}MB)`);
-                      continue;
-                    }
-
-                    this.files.push(f);
-                    this.previews.push(URL.createObjectURL(f));
-                  }
-
-                  // limpiar el input visible para permitir re-selecciones iguales
-                  input.value = '';
-
-                  // si no hay files válidos, vaciamos el input livewire y salimos
-                  if (this.files.length === 0) {
-                    // limpiamos livewire input asíncronamente (evita reentradas)
-                    setTimeout(() => {
-                      const live = document.getElementById('fotos_livewire');
-                      try {
-                        live.value = '';
-                      } catch (err) {}
-                      live.dispatchEvent(new Event('change', {
-                        bubbles: true
-                      }));
-                      this.processing = false;
-                    }, 50);
-                    this.processing = false;
-                    return;
-                  }
-
-                  // si hay files válidos, volcarlos al input hidden que tiene wire:model
-                  // (reemplaza lo anterior, no append)
-                  const dt = new DataTransfer();
-                  this.files.forEach(f => dt.items.add(f));
-                  const liveInput = document.getElementById('fotos_livewire');
-                  liveInput.files = dt.files;
-
-                  // dispatch asíncrono para evitar cualquier reentrada con Livewire
-                  setTimeout(() => {
-                    liveInput.dispatchEvent(new Event('change', {
-                      bubbles: true
-                    }));
-                    this.processing = false;
-                  }, 50);
-                },
-
-                // eliminar una preview concreta y recalcular input livewire
-                remove(index) {
-                  // liberar url
-                  URL.revokeObjectURL(this.previews[index]);
-                  this.previews.splice(index, 1);
-                  this.files.splice(index, 1);
-                  // actualizar input livewire con los files restantes
-                  const dt = new DataTransfer();
-                  this.files.forEach(f => dt.items.add(f));
-                  const liveInput = document.getElementById('fotos_livewire');
-                  liveInput.files = dt.files;
-                  // dispatch async
-                  setTimeout(() => liveInput.dispatchEvent(new Event('change', {
-                    bubbles: true
-                  })), 50);
-                },
-
-                // helper para limpiar todo
-                _clearAll() {
-                  // liberar urls antiguas
-                  this.previews.forEach(u => URL.revokeObjectURL(u));
-                  this.previews = [];
-                  this.files = [];
                   this.rejected = [];
+
+                  for (const f of files) {
+                    if (!f.type || !f.type.startsWith('image/')) {
+                      this.rejected.push(`${this._short(f.name)} (no imagen)`);
+                      continue;
+                    }
+
+                    if (f.size > this.maxBytes) {
+                      this.rejected.push(`${this._short(f.name)} (>${this.maxMb}MB)`);
+                      continue;
+                    }
+
+                    validFiles.push(f);
+                  }
+
+                  if (validFiles.length === 0) return;
+
+                  // Sube los archivos válidos usando Livewire.upload
+                  for (const file of validFiles) {
+                    this.$wire.upload(
+                      'imagenes',
+                      file,
+                      () => {},
+                      () => this.rejected.push(`${this._short(file.name)} (error subida)`)
+                    );
+                  }
+                },
+
+                _short(name) {
+                  const maxLen = 15;
+                  return name.length > maxLen ? name.substring(0, maxLen) + "..." : name;
                 }
               }
             }
