@@ -24,7 +24,7 @@ class Home extends Component
 	{
 		return [
 			'imagenes' => 'required|array|min:1',
-			'imagenes.*' => 'file|mimes:jpeg,jpg,png,webp,heic,heif|max:5120',
+			'imagenes.*' => 'file|mimes:jpeg,jpg,png,webp,heic,heif|max:10240',
 		];
 	}
 
