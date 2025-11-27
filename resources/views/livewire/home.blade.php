@@ -121,7 +121,7 @@
   <div class="HomeD">
     @foreach ($imagenesGaleria as $imagen)
       <div x-data="{ showModal{{ $imagen->id }}: false, imageSrc: '' }">
-        <img src="{{ asset('storage/' . $imagen->url) }}" alt="" alt="Imagen ampliable" x-on:click="imageSrc = $el.src; showModal{{ $imagen->id }} = true" class="cursor-pointer">
+        <img src="{{ asset('storage/' . $imagen->url) }}" alt="" alt="Imagen ampliable" loading="lazy" x-on:click="imageSrc = $el.src; showModal{{ $imagen->id }} = true" class="cursor-pointer">
 
         <template x-if="showModal{{ $imagen->id }}">
           <div x-show="showModal{{ $imagen->id }}" @click.self="showModal{{ $imagen->id }} = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" x-transition>
