@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\CreateThumbnailJob;
 use App\Models\Imagenes;
 use App\Models\Post;
 use Illuminate\Support\Str;
@@ -18,7 +19,6 @@ class Home extends Component
 	public $mensaje;
 	#[Validate('required', message: 'Sube una foto del momento.')]
 	public $imagenes = [];
-	public $imagenesGaleria = [];
 
 	protected function rules()
 	{
@@ -26,11 +26,6 @@ class Home extends Component
 			'imagenes' => 'required|array|min:1',
 			'imagenes.*' => 'file|mimes:jpeg,jpg,png,webp,heic,heif|max:10240',
 		];
-	}
-
-	public function mount()
-	{
-		$this->imagenesGaleria = Imagenes::all();
 	}
 
 	public function guardar()
@@ -51,17 +46,20 @@ class Home extends Component
 			$hash = substr(md5(uniqid()), 0, 4); // 4 caracteres para asegurar unicidad
 			$nombreArchivo = "{$nombreLimpio}_{$hora}_{$i}_{$hash}.{$extension}";
 
-			$post->imagenes()->create([
-				'url' => $imagen->storeAs('posts', $nombreArchivo, 'public'),
+			$ruta = $imagen->storeAs('posts', $nombreArchivo, 'public');
+
+			$nuevaImagen = $post->imagenes()->create([
+				'url' => $ruta,
 				'nombre' => $nombreArchivo,
+				'processed' => false,
 			]);
+
+			dispatch(new CreateThumbnailJob($nuevaImagen->id));
 		}
 
 		$this->nombre = '';
 		$this->mensaje = '';
 		$this->imagenes = [];
-
-		$this->imagenesGaleria = Imagenes::all();
 	}
 
 	public function eliminarImagen($index)
@@ -74,6 +72,8 @@ class Home extends Component
 
 	public function render()
 	{
-		return view('livewire.home');
+		return view('livewire.home', [
+			'imagenesGaleria' => Imagenes::latest()->get()
+		]);
 	}
 }

@@ -27,7 +27,7 @@
           @enderror
         </div>
 
-        <div class="HomeC2" x-data="autoFilesToLivewire({ maxMb: 5 })">
+        <div class="HomeC2" x-data="autoFilesToLivewire({ maxMb: 8 })">
 
           <label for="fotos" class="btn-fotos">Seleccionar fotos</label>
           <input type="file" id="fotos" class="input-fotos" multiple required accept="image/*" @change="handle($event)">
@@ -42,7 +42,7 @@
 
           <script>
             function autoFilesToLivewire({
-              maxMb = 5
+              maxMb = 8
             } = {}) {
               return {
                 maxMb,
@@ -118,16 +118,16 @@
     <img src="{{ asset('imagenes/VC.03.webp') }}" alt="">
   </div>
 
-  <div class="HomeD">
-    @foreach ($imagenesGaleria as $imagen)
+  <div class="HomeD" wire:poll.3s>
+    @foreach ($imagenesGaleria->where('processed', true) as $imagen)
       <div x-data="{ showModal{{ $imagen->id }}: false, imageSrc: '' }">
-        <img src="{{ asset('storage/' . $imagen->url) }}" alt="" alt="Imagen ampliable" loading="lazy" x-on:click="imageSrc = $el.src; showModal{{ $imagen->id }} = true" class="cursor-pointer">
+
+        <img src="{{ asset('storage/' . $imagen->thumb_url) }}" loading="lazy" class="cursor-pointer" x-on:click="imageSrc = '{{ asset('storage/' . $imagen->url) }}'; showModal{{ $imagen->id }} = true">
 
         <template x-if="showModal{{ $imagen->id }}">
           <div x-show="showModal{{ $imagen->id }}" @click.self="showModal{{ $imagen->id }} = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" x-transition>
             <div class="relative">
-
-              <button x-on:click="showModal{{ $imagen->id }} = false" class="absolute right-3 top-3 text-3xl font-bold text-white transition hover:scale-110">
+              <button x-on:click="showModal{{ $imagen->id }} = false" class="absolute right-3 top-3 text-3xl font-bold text-white">
                 &times;
               </button>
 

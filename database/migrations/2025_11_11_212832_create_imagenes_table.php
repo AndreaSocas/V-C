@@ -16,6 +16,8 @@ return new class extends Migration
 			$table->foreignId('post_id')->constrained()->cascadeOnDelete();
 			$table->string('nombre');
 			$table->string('url');
+			$table->boolean('processed')->default(false);
+			$table->string('thumb_url')->nullable();
 			$table->timestamps();
 		});
 	}
