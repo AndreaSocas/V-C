@@ -13,7 +13,7 @@
   @livewireStyles
 
   <!-- Título -->
-  <title>Víctor & Cristina</title>
+  <title>María & Felipe</title>
 
   <!-- Metadescripcion -->
   <meta name="description" content=""> <!-- 130-160 caracteres -->
@@ -34,8 +34,8 @@
   <meta name="author" content="Metahorus">
 
   <!-- Título - Redes -->
-  <meta name="og:title" content="Víctor & Cristina"> <!-- Define el título de la página web para Facebook -->
-  <meta name="twitter:title" content="Víctor & Cristina"> <!-- Define el título de la página web para Twitter -->
+  <meta name="og:title" content="María & Felipe"> <!-- Define el título de la página web para Facebook -->
+  <meta name="twitter:title" content="María & Felipe"> <!-- Define el título de la página web para Twitter -->
 
   <!-- Descripción - Redes -->
   <meta name="og:description" content="..."> <!-- Define la descripción de la página web para Facebook -->

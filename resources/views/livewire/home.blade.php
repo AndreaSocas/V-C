@@ -1,6 +1,6 @@
 <div>
   <div class="HomeA">
-    <img src="{{ asset('/imagenes/VC.01.webp') }}" alt="">
+    <img src="{{ asset('/imagenes/fondo01.webp') }}" alt="">
   </div>
 
   <div class="HomeB">
