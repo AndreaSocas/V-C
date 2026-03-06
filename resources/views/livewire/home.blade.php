@@ -1,6 +1,6 @@
 <div>
   <div class="HomeA">
-    <img src="{{ asset('/imagenes/fondo01.webp') }}" alt="">
+    <img src="{{ asset('/imagenes/img01.webp') }}" alt="">
   </div>
 
   <div class="HomeB">
@@ -9,125 +9,131 @@
       nuestro gran día.</h2>
   </div>
   <div class="HomeC">
-    <div class="HomeC0">
-      <div class="HomeC9">
-        <div class="HomeC1">
-          <label for="">Nombre</label>
-          <input type="text" wire:model='nombre' required>
-          @error('nombre')
-            <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
-          @enderror
-        </div>
-
-        <div class="HomeC1">
-          <label for="">Mensaje (solo lo verán los novios)</label>
-          <textarea name="" id="" cols="30" rows="5" wire:model='mensaje'></textarea>
-          @error('mensaje')
-            <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
-          @enderror
-        </div>
-
-        <div class="HomeC2" x-data="autoFilesToLivewire({ maxMb: 8 })">
-
-          <label for="fotos" class="btn-fotos">Seleccionar fotos</label>
-          <input type="file" id="fotos" class="input-fotos" multiple required accept="image/*" @change="handle($event)">
-
-          <!-- Mensaje de archivos rechazados -->
-          <template x-if="rejected.length">
-            <div class="text-lg font-semibold text-yellow-400">
-              Archivos demasiado grandes:
-              <span x-text="rejected.join(', ')"></span>
-            </div>
-          </template>
-
-          <script>
-            function autoFilesToLivewire({
-              maxMb = 8
-            } = {}) {
-              return {
-                maxMb,
-                maxBytes: maxMb * 1024 * 1024,
-                rejected: [],
-
-                handle(e) {
-                  const input = e.target;
-                  const files = Array.from(input.files || []);
-                  const validFiles = [];
-
-                  this.rejected = [];
-
-                  for (const f of files) {
-                    if (!f.type || !f.type.startsWith('image/')) {
-                      this.rejected.push(`${this._short(f.name)} (no imagen)`);
-                      continue;
+    <div class="borde">
+      <div class="HomeC0">
+        <div class="HomeC9">
+          <div class="HomeC1">
+            <label for="">Nombre</label>
+            <input type="text" wire:model='nombre' required>
+            @error('nombre')
+              <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
+            @enderror
+          </div>
+  
+          <div class="HomeC1">
+            <label for="">Mensaje (solo lo verán los novios)</label>
+            <textarea name="" id="" cols="30" rows="5" wire:model='mensaje'></textarea>
+            @error('mensaje')
+              <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
+            @enderror
+          </div>
+  
+          <div class="HomeC2" x-data="autoFilesToLivewire({ maxMb: 8 })">
+  
+            <label for="fotos" class="btn-fotos">Seleccionar fotos</label>
+            <input type="file" id="fotos" class="input-fotos" multiple required accept="image/*"
+              @change="handle($event)">
+  
+            <!-- Mensaje de archivos rechazados -->
+            <template x-if="rejected.length">
+              <div class="text-lg font-semibold text-yellow-400">
+                Archivos demasiado grandes:
+                <span x-text="rejected.join(', ')"></span>
+              </div>
+            </template>
+  
+            <script>
+              function autoFilesToLivewire({
+                maxMb = 8
+              } = {}) {
+                return {
+                  maxMb,
+                  maxBytes: maxMb * 1024 * 1024,
+                  rejected: [],
+  
+                  handle(e) {
+                    const input = e.target;
+                    const files = Array.from(input.files || []);
+                    const validFiles = [];
+  
+                    this.rejected = [];
+  
+                    for (const f of files) {
+                      if (!f.type || !f.type.startsWith('image/')) {
+                        this.rejected.push(`${this._short(f.name)} (no imagen)`);
+                        continue;
+                      }
+  
+                      if (f.size > this.maxBytes) {
+                        this.rejected.push(`${this._short(f.name)} (>${this.maxMb}MB)`);
+                        continue;
+                      }
+  
+                      validFiles.push(f);
                     }
-
-                    if (f.size > this.maxBytes) {
-                      this.rejected.push(`${this._short(f.name)} (>${this.maxMb}MB)`);
-                      continue;
+  
+                    if (validFiles.length === 0) return;
+  
+                    // Sube los archivos válidos usando Livewire.upload
+                    for (const file of validFiles) {
+                      this.$wire.upload(
+                        'imagenes',
+                        file,
+                        () => {},
+                        () => this.rejected.push(`${this._short(file.name)} (error subida)`)
+                      );
                     }
-
-                    validFiles.push(f);
+                  },
+  
+                  _short(name) {
+                    const maxLen = 15;
+                    return name.length > maxLen ? name.substring(0, maxLen) + "..." : name;
                   }
-
-                  if (validFiles.length === 0) return;
-
-                  // Sube los archivos válidos usando Livewire.upload
-                  for (const file of validFiles) {
-                    this.$wire.upload(
-                      'imagenes',
-                      file,
-                      () => {},
-                      () => this.rejected.push(`${this._short(file.name)} (error subida)`)
-                    );
-                  }
-                },
-
-                _short(name) {
-                  const maxLen = 15;
-                  return name.length > maxLen ? name.substring(0, maxLen) + "..." : name;
                 }
               }
-            }
-          </script>
-
-          @error('imagenes')
-            <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
-          @enderror
-          @error('imagenes.*')
-            <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
-          @enderror
+            </script>
+  
+            @error('imagenes')
+              <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
+            @enderror
+            @error('imagenes.*')
+              <span class="text-lg font-semibold text-yellow-400">{{ $message }}</span>
+            @enderror
+          </div>
         </div>
-      </div>
-
-      <div class="HomeC3">
+  
         @foreach ($imagenes as $i => $imagen)
-          <div class="HomeC4" wire:key='{{ $imagen->temporaryUrl() }}'>
-            <img src="{{ $imagen->temporaryUrl() }}" alt="">
-            <button wire:click="eliminarImagen('{{ $i }}')">Borrar imagen</button>
+          <div class="HomeC3">
+            <div class="HomeC4" wire:key='{{ $imagen->temporaryUrl() }}'>
+              <img src="{{ $imagen->temporaryUrl() }}" alt="">
+              <button wire:click="eliminarImagen('{{ $i }}')">Borrar imagen</button>
+            </div>
           </div>
         @endforeach
-      </div>
-
-      <div class="HomeC2">
-        <button wire:click='guardar()' class="btn-enviar">Enviar</button>
+  
+        <div class="HomeC2">
+          <button wire:click='guardar()' class="btn-enviar">Enviar</button>
+        </div>
       </div>
     </div>
   </div>
-  <div class="HomeDivisor">
+  {{-- <div class="HomeDivisor">
     <img src="{{ asset('imagenes/VC.03.webp') }}" alt="">
-  </div>
+  </div> --}}
 
   <div class="HomeD" wire:poll.3s>
     @foreach ($imagenesGaleria->where('processed', true) as $imagen)
       <div x-data="{ showModal{{ $imagen->id }}: false, imageSrc: '' }">
 
-        <img src="{{ asset('storage/' . $imagen->thumb_url) }}" loading="lazy" class="cursor-pointer" x-on:click="imageSrc = '{{ asset('storage/' . $imagen->url) }}'; showModal{{ $imagen->id }} = true">
+        <img src="{{ asset('storage/' . $imagen->thumb_url) }}" loading="lazy" class="cursor-pointer"
+          x-on:click="imageSrc = '{{ asset('storage/' . $imagen->url) }}'; showModal{{ $imagen->id }} = true">
 
         <template x-if="showModal{{ $imagen->id }}">
-          <div x-show="showModal{{ $imagen->id }}" @click.self="showModal{{ $imagen->id }} = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" x-transition>
+          <div x-show="showModal{{ $imagen->id }}" @click.self="showModal{{ $imagen->id }} = false"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" x-transition>
             <div class="relative">
-              <button x-on:click="showModal{{ $imagen->id }} = false" class="absolute right-3 top-3 text-3xl font-bold text-white">
+              <button x-on:click="showModal{{ $imagen->id }} = false"
+                class="absolute right-3 top-3 text-3xl font-bold text-white">
                 &times;
               </button>
 
